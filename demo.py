@@ -82,12 +82,14 @@ if __name__ == "__main__":
 
             # import pdb; pdb.set_trace()
             vis = cv2.imread(os.path.join(cfg.data_root,names[0]))
+            # print(out_j.shape)
+            color = ((255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0))
             for i in range(out_j.shape[1]):
                 if np.sum(out_j[:, i] != 0) > 2:
                     for k in range(out_j.shape[0]):
                         if out_j[k, i] > 0:
                             ppp = (int(out_j[k, i] * col_sample_w * img_w / 800) - 1, int(img_h * (row_anchor[cls_num_per_lane-1-k]/288)) - 1 )
-                            cv2.circle(vis,ppp,5,(0,255,0),-1)
+                            cv2.circle(vis,ppp,5,color[i],-1)
             vout.write(vis)
         
         vout.release()
