@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 
+import rospy
+from sensor_msgs.msg import Image as SensorImage
+
+import sys
+sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
+
 import torch, os, cv2
 from model.model import parsingNet
 from utils.common import merge_config
@@ -10,9 +16,7 @@ import numpy as np
 import torchvision.transforms as transforms
 
 from data.constant import culane_row_anchor
-import rospy
 import threading
-from sensor_msgs.msg import Image as SensorImage
 import PIL
 from cv_bridge_cus import CvBridge
 from matplotlib import pyplot as plt
